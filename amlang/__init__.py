@@ -2,6 +2,8 @@
 import ast
 import importlib.machinery
 import importlib.util
+import linecache
+import os
 import sys
 
 from .fixer import MISSING, Fixer
@@ -12,7 +14,19 @@ __all__ = ["compile_am", "run_file"]
 
 def compile_am(source, filename="<am>", mode="exec"):
     """Parse AM source, apply the bug fixes, and return a Python code object."""
-    tree = Fixer().visit(ast.parse(source, filename, mode))
+    if not os.path.exists(filename):
+        # Let error messages show the code line even when it isn't in a file.
+        linecache.cache[filename] = (len(source), None, source.splitlines(True), filename)
+    try:
+        tree = Fixer().visit(ast.parse(source, filename, mode))
+    except SyntaxError as e:
+        # Errors raised by the Fixer don't know the file yet; fill it in.
+        if e.filename is None:
+            e.filename = filename
+            lines = source.splitlines()
+            if e.lineno and e.lineno <= len(lines):
+                e.text = lines[e.lineno - 1]
+        raise
     return compile(ast.fix_missing_locations(tree), filename, mode)
 
 

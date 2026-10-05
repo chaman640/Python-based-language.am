@@ -18,6 +18,7 @@ use chala deta hai.
 |---|---|
 | `amlang/fixer.py` | Saare bug fixes. Har fix ek `visit_*` function hai |
 | `amlang/__init__.py` | `.am` file compile karna, aur `import` se `.am` files dhundhna |
+| `amlang/errors.py` | Aasaan error messages aur hints |
 | `amlang/cli.py` | `am` command aur interactive prompt |
 | `tests/test_fixes.py` | Har fix ka test |
 | `examples/` | Example `.am` programs |
@@ -38,9 +39,11 @@ use chala deta hai.
 - [x] Bare `except:`
 - [x] Built-in naam overwrite karna (`list = ...`)
 
-### Step 3: Aasaan error messages
-- [ ] Python ke lambe traceback ki jagah chhota, saaf message: line number + kya galat hai + kaise theek karein
-- [ ] Aam galtiyon ke hint, jaise `NameError` par "kya aapka matlab `xyz` tha?"
+### Step 3: Aasaan error messages (ho gaya ✅)
+- [x] Python ke lambe traceback ki jagah chhota, saaf message: file + line + code, kya galat hai, kaise theek karein (`amlang/errors.py`)
+- [x] Aam galtiyon ke hint: spelling galti par "Did you mean ...?", text + number, `None` value, `pip install`, divide by zero, missing `:` waghaira
+- [x] Library ke andar error ho to batana ki kaunsi library, aur aapki kaunsi line ne use call kiya
+- [x] `am --traceback file.am` se pura Python traceback bhi dekh sakte hain
 
 ### Step 4: Aur bug fixes (ek-ek karke, har ek ke saath test)
 - [ ] Loop ke andar lambda/closure ka late binding (`[lambda: i for i in range(3)]`)

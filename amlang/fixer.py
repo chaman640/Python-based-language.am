@@ -45,5 +45,8 @@ class Fixer(ast.NodeTransformer):
     # Fix 4: overwriting built-ins (list = ..., print = ...) is an error
     def visit_Name(self, node):
         if isinstance(node.ctx, ast.Store) and node.id in dir(builtins) and not node.id.startswith("_"):
-            raise SyntaxError(f"line {node.lineno}: '{node.id}' is a built-in name, choose another name")
+            raise SyntaxError(
+                f"'{node.id}' is a built-in name, choose another name",
+                (None, node.lineno, node.col_offset + 1, None),
+            )
         return node

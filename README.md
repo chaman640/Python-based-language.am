@@ -18,6 +18,7 @@ pip install -e .
 ```bash
 am hello.am      # run a file
 am               # interactive prompt (like python's >>>)
+am --traceback hello.am   # show the full Python traceback on errors
 ```
 
 ```python
@@ -46,6 +47,29 @@ from helpers import add_item
 
 The fixes apply only to `.am` files. Library code is never changed, so every
 library behaves exactly as it does in Python.
+
+## Friendly errors
+
+Instead of a long Python traceback, AM shows where the error is, what went
+wrong, and how to fix it:
+
+```
+Error in main.am, line 2:
+    print(nmae)
+
+NameError: name 'nmae' is not defined
+Hint: Did you mean 'name'?
+```
+
+```
+Error in main.am, line 2:
+    print("Age: " + age)
+
+TypeError: can only concatenate str (not "int") to str
+Hint: You are mixing text and numbers. Use str(x) to turn a number into text, or int(x) / float(x) to turn text into a number.
+```
+
+Run `am --traceback file.am` to see the full Python traceback.
 
 ## How it works
 
