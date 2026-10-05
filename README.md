@@ -8,10 +8,18 @@ Files end in `.am`. If you know Python, you already know AM.
 ## Install
 
 ```bash
+pip install am-lang
+```
+
+Or from source (to work on AM itself):
+
+```bash
 git clone https://github.com/chaman640/Python-based-language.am.git
 cd Python-based-language.am
 pip install -e .
 ```
+
+Check it works: `am --version`
 
 ## Use
 
@@ -101,3 +109,8 @@ node --test editors/vscode/test/extension.test.js
 ```
 
 See [docs/ROADMAP.md](docs/ROADMAP.md) for the step-by-step plan.
+
+## License
+
+AM is free and open source under the [MIT License](LICENSE): anyone can use,
+copy, change and share it, including for work.

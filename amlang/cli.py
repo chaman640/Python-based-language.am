@@ -4,7 +4,7 @@ import os
 import sys
 import traceback
 
-from . import compile_am, new_globals, run_file
+from . import __version__, compile_am, new_globals, run_file
 from .errors import format_error
 
 USAGE = """usage: am [--traceback] [file.am] [args...]
@@ -16,6 +16,7 @@ USAGE = """usage: am [--traceback] [file.am] [args...]
   am --check file.am       find errors and warnings without running the file
                            (use - as the file name to read code from stdin)
   --json                   with --check: print the problems as JSON (for editors)
+  --version                show the AM version
 """
 
 
@@ -44,8 +45,11 @@ class AmConsole(code.InteractiveConsole):
 def main():
     args = sys.argv[1:]
     flags = set()
-    while args and args[0] in ("--traceback", "--check", "--json", "-h", "--help"):
+    while args and args[0] in ("--traceback", "--check", "--json", "--version", "-h", "--help"):
         flags.add(args.pop(0))
+    if "--version" in flags:
+        print(f"AM {__version__}")
+        return
     if flags & {"-h", "--help"}:
         print(USAGE, end="")
         return

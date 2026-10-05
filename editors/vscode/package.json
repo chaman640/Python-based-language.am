@@ -4,6 +4,7 @@
   "description": "Colours, errors and a Run button for AM (.am) files",
   "version": "0.1.0",
   "publisher": "chaman640",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/chaman640/Python-based-language.am"
@@ -11,15 +12,25 @@
   "engines": {
     "vscode": "^1.75.0"
   },
-  "categories": ["Programming Languages", "Linters"],
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
   "main": "./extension.js",
-  "activationEvents": ["onLanguage:am"],
+  "activationEvents": [
+    "onLanguage:am"
+  ],
   "contributes": {
     "languages": [
       {
         "id": "am",
-        "aliases": ["AM", "am"],
-        "extensions": [".am"],
+        "aliases": [
+          "AM",
+          "am"
+        ],
+        "extensions": [
+          ".am"
+        ],
         "configuration": "./language-configuration.json"
       }
     ],
@@ -52,8 +63,14 @@
         }
       ],
       "commandPalette": [
-        { "command": "am.runFile", "when": "editorLangId == am" },
-        { "command": "am.checkFile", "when": "editorLangId == am" }
+        {
+          "command": "am.runFile",
+          "when": "editorLangId == am"
+        },
+        {
+          "command": "am.checkFile",
+          "when": "editorLangId == am"
+        }
       ]
     },
     "configuration": {

@@ -63,9 +63,33 @@ wale ko hairaan na kare.
 - [x] ▶ Run button jo file ko terminal me `am` se chalata hai
 - [x] CI har push par extension test karta hai aur `.vsix` file banata hai (Actions → Artifacts)
 
-### Step 6: Release
-- [ ] PyPI par publish karna, taaki koi bhi `pip install amlang` kar sake
-- [ ] Documentation website
+### Step 6: Release (taiyaari ho gayi ✅, publish baaki)
+- [x] MIT License: AM sabke liye free
+- [x] PyPI naam `am-lang` (`amlang` pehle se kisi aur ka hai). Command `am` hi rahega
+- [x] `am --version`
+- [x] Package build + `twine check` pass, aur saaf venv me wheel install karke test kiya
+- [x] Release workflow (`.github/workflows/release.yml`): GitHub release banate hi PyPI par publish + `.vsix` release me attach
+- [ ] **Aapko ek baar karna hai:** PyPI par publish ki permission dena (neeche dekho)
+- [ ] Pehla release `v0.1.0` banana
+- [ ] (Baad me) VS Code Marketplace par extension publish karna
+- [ ] (Baad me) Documentation website
+
+#### PyPI par pehli baar publish kaise karein
+
+1. https://pypi.org/account/register/ par account banao (email verify aur 2FA on karna zaroori hai).
+2. https://pypi.org/manage/account/publishing/ kholo → **Add a new pending publisher** → GitHub tab me ye bharo:
+   - PyPI Project Name: `am-lang`
+   - Owner: `chaman640`
+   - Repository name: `Python-based-language.am`
+   - Workflow name: `release.yml`
+   - Environment name: `pypi`
+3. GitHub repo → **Settings → Environments → New environment** → naam `pypi` → Save.
+4. GitHub repo → **Releases → Draft a new release** → tag `v0.1.0` → **Publish release**.
+5. **Actions** tab me `release` workflow chalega. Hara (green) hone ke baad koi bhi
+   `pip install am-lang` kar sakta hai, aur `.vsix` file release page par mil jaayegi.
+
+Agli baar release ke liye: `pyproject.toml`, `amlang/__init__.py` aur
+`editors/vscode/package.json` me version badhao (jaise `0.2.0`), phir naya release banao.
 
 ## Naya bug fix kaise jodein
 
