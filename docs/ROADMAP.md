@@ -63,15 +63,15 @@ wale ko hairaan na kare.
 - [x] ▶ Run button jo file ko terminal me `am` se chalata hai
 - [x] CI har push par extension test karta hai aur `.vsix` file banata hai (Actions → Artifacts)
 
-### Step 6: Release (taiyaari ho gayi ✅, publish baaki)
+### Step 6: Release (ho gaya ✅)
 - [x] MIT License: AM sabke liye free
 - [x] PyPI naam `am-language` (`amlang`/`am-lang` nahi mil sakte: PyPI unhe ek hi naam maanta hai). Command `am` hi rahega
 - [x] `am --version`
 - [x] Package build + `twine check` pass, aur saaf venv me wheel install karke test kiya
 - [x] Release workflow (`.github/workflows/release.yml`): GitHub release banate hi PyPI par publish + `.vsix` release me attach
-- [ ] **Aapko ek baar karna hai:** PyPI par publish ki permission dena (neeche dekho)
+- [x] PyPI par publish ki permission (trusted publisher)
 - [x] Release `v0.1.0` (VS Code `.vsix` ke saath)
-- [ ] Release `v0.1.1`: PyPI par pehli baar `am-language`
+- [x] Release `v0.1.1`: AM PyPI par live, https://pypi.org/project/am-language/
 - [ ] (Baad me) VS Code Marketplace par extension publish karna
 - [ ] (Baad me) Documentation website
 
