@@ -111,6 +111,11 @@ def _hint(exc):
 
     if isinstance(exc, AttributeError):
         obj, name = getattr(exc, "obj", None), getattr(exc, "name", None)
+        if obj is None:
+            # Python 3.9 has no exc.obj / exc.name: read them from the message.
+            parsed = re.match(r"'(\w+)' object has no attribute '(\w+)'", msg)
+            if parsed:
+                obj, name = getattr(builtins, parsed.group(1), None), parsed.group(2)
         if obj is not None and name:
             match = _closest(name, [a for a in dir(obj) if not a.startswith("_")])
             if match:
