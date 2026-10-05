@@ -1,6 +1,6 @@
 [project]
-name = "am-lang"
-version = "0.1.0"
+name = "am-language"
+version = "0.1.1"
 description = "AM: Python syntax, Python libraries, fewer Python bugs"
 readme = "README.md"
 license = { file = "LICENSE" }

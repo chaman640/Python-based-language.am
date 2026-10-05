@@ -9,7 +9,7 @@ import warnings
 
 from .fixer import MISSING, Fixer
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = ["AmWarning", "compile_am", "run_file"]
 
 

@@ -2,7 +2,7 @@
   "name": "am-language",
   "displayName": "AM Language",
   "description": "Colours, errors and a Run button for AM (.am) files",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "chaman640",
   "license": "MIT",
   "repository": {

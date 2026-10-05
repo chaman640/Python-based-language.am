@@ -8,7 +8,7 @@ Files end in `.am`. If you know Python, you already know AM.
 ## Install
 
 ```bash
-pip install am-lang
+pip install am-language
 ```
 
 Or from source (to work on AM itself):

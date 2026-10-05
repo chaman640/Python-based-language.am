@@ -25,7 +25,7 @@ pip install -e .
    npx @vscode/vsce package
    ```
 2. In VS Code: Extensions panel → `...` menu → **Install from VSIX...** → pick the file.
-   Or from a terminal: `code --install-extension am-language-0.1.0.vsix`
+   Or from a terminal: `code --install-extension am-language-0.1.1.vsix`
 
 **Option 2: only colours, no extension**
 
