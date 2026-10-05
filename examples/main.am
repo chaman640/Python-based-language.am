@@ -1,0 +1,19 @@
+import json
+from helpers import add_item
+
+# Python libraries work as usual
+print(json.dumps({"lang": "AM", "ok": True}))
+
+# Fix 1: no shared default list
+print(add_item(1))   # [1]
+print(add_item(2))   # [2]   (Python would print [1, 2])
+
+# Fix 2: `is` with numbers behaves like ==
+big = 1000
+print(big is 1000)   # True
+
+# Fix 3: bare except does not swallow Ctrl+C
+try:
+    1 / 0
+except:
+    print("error caught")

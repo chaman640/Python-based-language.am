@@ -1,0 +1,66 @@
+# Python-based-language.am
+
+**AM** is a small language that looks exactly like Python, runs every Python
+library, and fixes a few common Python bugs automatically.
+
+Files end in `.am`. If you know Python, you already know AM.
+
+## Install
+
+```bash
+git clone https://github.com/chaman640/Python-based-language.am.git
+cd Python-based-language.am
+pip install -e .
+```
+
+## Use
+
+```bash
+am hello.am      # run a file
+am               # interactive prompt (like python's >>>)
+```
+
+```python
+# hello.am
+import json                 # any Python library works
+from helpers import add_item  # other .am files can be imported too
+
+print(json.dumps({"lang": "AM"}))
+```
+
+Plain Python can import `.am` files as well:
+
+```python
+import amlang          # turns on .am imports
+from helpers import add_item
+```
+
+## Bugs AM fixes
+
+| # | Python problem | What AM does |
+|---|---|---|
+| 1 | `def f(items=[])` shares one list between all calls | Every call gets a fresh `[]`, `{}` or `set()` |
+| 2 | `x is 1000` is sometimes True, sometimes False | `is` with a number or string compares values (`==`). `is None` is unchanged |
+| 3 | Bare `except:` also catches Ctrl+C | It becomes `except Exception:` |
+| 4 | `list = [1, 2]` silently breaks the built-in `list` | Clear error: `'list' is a built-in name, choose another name` |
+
+The fixes apply only to `.am` files. Library code is never changed, so every
+library behaves exactly as it does in Python.
+
+## How it works
+
+```
+your .am file → ast.parse (Python's own parser) → amlang/fixer.py (bug fixes) → compile → run
+```
+
+There is no custom parser, so the language stays small and compatible.
+To add a new fix, add one `visit_*` method in `amlang/fixer.py` and a test in
+`tests/test_fixes.py`.
+
+## Tests
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+See [docs/ROADMAP.md](docs/ROADMAP.md) for the step-by-step plan.
