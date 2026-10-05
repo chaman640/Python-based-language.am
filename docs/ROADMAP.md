@@ -21,6 +21,7 @@ use chala deta hai.
 | `amlang/errors.py` | Aasaan error messages aur hints |
 | `amlang/check.py` | `am --check`: bina chalaye problems dhundhna |
 | `editors/vscode/` | VS Code extension |
+| `site/` | Website (GitHub Pages) |
 | `amlang/cli.py` | `am` command aur interactive prompt |
 | `tests/test_fixes.py` | Har fix ka test |
 | `examples/` | Example `.am` programs |
@@ -72,8 +73,8 @@ wale ko hairaan na kare.
 - [x] PyPI par publish ki permission (trusted publisher)
 - [x] Release `v0.1.0` (VS Code `.vsix` ke saath)
 - [x] Release `v0.1.1`: AM PyPI par live, https://pypi.org/project/am-language/
-- [ ] (Baad me) VS Code Marketplace par extension publish karna
-- [ ] (Baad me) Documentation website
+- [x] VS Code Marketplace + Open VSX publish ka setup (release workflow me) — Step 7 dekho
+- [x] Website: `site/` folder, GitHub Pages par — Step 8 dekho
 
 #### PyPI par pehli baar publish kaise karein
 
@@ -91,6 +92,42 @@ wale ko hairaan na kare.
 
 Agli baar release ke liye: `pyproject.toml`, `amlang/__init__.py` aur
 `editors/vscode/package.json` me version badhao (jaise `0.2.0`), phir naya release banao.
+
+### Step 7: VS Code Marketplace
+- [x] Icon (`editors/vscode/images/icon.png`), author, keywords, Marketplace README
+- [x] Release workflow `VSCE_PAT` secret ho to Marketplace par publish karta hai (aur `OVSX_PAT` ho to Open VSX par)
+- [ ] **Aapko ek baar karna hai** (neeche ke steps), phir release `v0.1.2`
+
+#### Marketplace par pehli baar publish kaise karein
+1. https://dev.azure.com par Microsoft account se login karo (free). Pehli baar ho to ek organization banane ko kahega, koi bhi naam do.
+2. Upar right **User settings** (aadmi wala icon) → **Personal access tokens** → **New Token**:
+   - Name: `vsce`
+   - Organization: **All accessible organizations**
+   - Expiration: sabse lamba (1 saal)
+   - Scopes: **Custom defined** → **Show all scopes** → **Marketplace** → **Manage** tick karo
+   - **Create** → jo token dikhe use copy kar lo (ye dobara nahi dikhega)
+3. https://marketplace.visualstudio.com/manage par usi Microsoft account se jao → **Create publisher**:
+   - ID: `chaman640` (bilkul yahi, kyunki `package.json` me yahi hai)
+   - Name: `Anuj Mishra`
+4. GitHub repo → **Settings → Secrets and variables → Actions → New repository secret**:
+   - Name: `VSCE_PAT`, Secret: step 2 wala token
+5. GitHub → **Releases → Draft a new release** → tag `v0.1.2` → **Publish release**.
+6. Kuch minute baad VS Code me Extensions panel me "AM Language" search karne par extension dikhega.
+
+### Step 8: Google aur AI chatbots par AM aur Anuj Mishra
+- [x] Website `site/index.html`: "AM programming language, created by Anuj Mishra", structured data (Google ko batata hai ki creator kaun hai), FAQ
+- [x] `sitemap.xml`, `robots.txt`, `llms.txt` (AI chatbots ke liye short parichay)
+- [x] Har jagah author "Anuj Mishra": PyPI, VS Code, LICENSE, `am --version`, `CITATION.cff`
+- [ ] **Aapko karna hai:**
+  1. GitHub repo → **Settings → Pages** → Source: **GitHub Actions**. Phir **Actions → website → Run workflow**.
+     Website khulegi: https://chaman640.github.io/Python-based-language.am/
+  2. GitHub repo page par **About** ke paas ⚙️ → Description: `AM programming language by Anuj Mishra: Python syntax, fewer bugs`,
+     Website: upar wala link, Topics: `programming-language`, `python`, `beginners`, `am-language`
+  3. https://search.google.com/search-console → **URL prefix** me website ka link → verify (HTML tag ya file) →
+     **Sitemaps** me `sitemap.xml` submit → **URL inspection** → **Request indexing**
+  4. Logon tak pahunchao: LinkedIn, Reddit (r/Python, r/learnprogramming), dev.to par post likho
+     "I built AM, a Python-based programming language" — har post me website ka link.
+     Jitni jagah link hoga, Google aur AI utni jaldi AM ko pehchanenge.
 
 ## Naya bug fix kaise jodein
 

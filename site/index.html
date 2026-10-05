@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AM Programming Language by Anuj Mishra</title>
+  <meta name="description" content="AM is a free programming language created by Anuj Mishra. It uses Python syntax, runs every Python library, and fixes common Python bugs automatically. Install with pip install am-language.">
+  <meta name="author" content="Anuj Mishra">
+  <meta name="keywords" content="AM language, AM programming language, Anuj Mishra, am-language, Python, beginners, .am files">
+  <link rel="canonical" href="https://chaman640.github.io/Python-based-language.am/">
+  <link rel="icon" type="image/png" href="icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AM Programming Language by Anuj Mishra">
+  <meta property="og:description" content="Python syntax, Python libraries, fewer Python bugs. Free and open source.">
+  <meta property="og:url" content="https://chaman640.github.io/Python-based-language.am/">
+  <meta property="og:image" content="https://chaman640.github.io/Python-based-language.am/icon.png">
+  <meta name="twitter:card" content="summary">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://chaman640.github.io/Python-based-language.am/#anuj-mishra",
+        "name": "Anuj Mishra",
+        "description": "Creator of the AM programming language.",
+        "sameAs": [
+          "https://github.com/chaman640",
+          "https://pypi.org/user/amsahab191/"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "AM programming language",
+        "alternateName": ["AM language", "am-language"],
+        "description": "A free programming language that uses Python syntax, runs every Python library, and fixes common Python bugs automatically. Files end in .am.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "softwareVersion": "0.1.2",
+        "license": "https://opensource.org/licenses/MIT",
+        "url": "https://chaman640.github.io/Python-based-language.am/",
+        "downloadUrl": "https://pypi.org/project/am-language/",
+        "codeRepository": "https://github.com/chaman640/Python-based-language.am",
+        "author": { "@id": "https://chaman640.github.io/Python-based-language.am/#anuj-mishra" },
+        "creator": { "@id": "https://chaman640.github.io/Python-based-language.am/#anuj-mishra" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Who created the AM programming language?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The AM programming language was created by Anuj Mishra." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the AM programming language?",
+            "acceptedAnswer": { "@type": "Answer", "text": "AM is a free programming language that looks exactly like Python, runs every Python library, and fixes common Python bugs automatically, with easy error messages for beginners. Files end in .am." }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I install AM?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Run pip install am-language (Python 3.9 or newer), then run a file with am hello.am." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is AM free?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. AM is free and open source under the MIT License." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f4f6fa;
+      --text: #172033;
+      --muted: #55607a;
+      --brand: #1f4e8c;
+      --accent: #ffd43b;
+      --border: #dde3ee;
+      --code-bg: #0f1a2c;
+      --code-text: #e7ecf5;
+      --ok: #1a7f37;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0d1320;
+        --surface: #151d2e;
+        --text: #e7ecf5;
+        --muted: #a3aec4;
+        --brand: #7fb0f0;
+        --accent: #ffd43b;
+        --border: #263149;
+        --code-bg: #0a0f1a;
+        --code-text: #e7ecf5;
+        --ok: #4ac26b;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0d1320;
+      --surface: #151d2e;
+      --text: #e7ecf5;
+      --muted: #a3aec4;
+      --brand: #7fb0f0;
+      --accent: #ffd43b;
+      --border: #263149;
+      --code-bg: #0a0f1a;
+      --code-text: #e7ecf5;
+      --ok: #4ac26b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+    header { padding: 48px 0 32px; border-bottom: 1px solid var(--border); }
+    .brand { display: flex; align-items: center; gap: 16px; }
+    .brand img { width: 64px; height: 64px; }
+    h1 { font-size: clamp(28px, 6vw, 44px); line-height: 1.15; margin: 0; }
+    .by { color: var(--muted); margin: 4px 0 0; }
+    .lead { font-size: 1.15em; margin: 24px 0; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-block; padding: 10px 18px; border-radius: 8px;
+      text-decoration: none; font-weight: 600; border: 1px solid var(--border); color: var(--text);
+    }
+    .btn.primary { background: var(--brand); border-color: var(--brand); color: var(--bg); }
+    section { padding: 32px 0; border-bottom: 1px solid var(--border); }
+    h2 { font-size: 1.5em; margin: 0 0 16px; }
+    pre {
+      background: var(--code-bg); color: var(--code-text); padding: 16px; border-radius: 8px;
+      overflow-x: auto; font-size: 15px; line-height: 1.5; margin: 12px 0;
+    }
+    code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+    p code, li code, td code { background: var(--surface); padding: 1px 6px; border-radius: 4px; font-size: 0.9em; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .card h3 { margin: 0 0 8px; font-size: 1.05em; }
+    .card p { margin: 0; color: var(--muted); }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: 15px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; }
+    .comment { color: #8fa3c4; }
+    .good { color: var(--ok); font-weight: 600; }
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: 15px; }
+    a { color: var(--brand); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand">
+        <img src="icon.png" alt="AM logo" width="64" height="64">
+        <div>
+          <h1>AM programming language</h1>
+          <p class="by">Created by <strong>Anuj Mishra</strong></p>
+        </div>
+      </div>
+      <p class="lead">
+        AM is a free programming language that looks exactly like Python, runs every
+        Python library, and fixes common Python bugs automatically. If you know Python,
+        you already know AM.
+      </p>
+      <div class="buttons">
+        <a class="btn primary" href="https://pypi.org/project/am-language/">pip install am-language</a>
+        <a class="btn" href="https://marketplace.visualstudio.com/items?itemName=chaman640.am-language">VS Code extension</a>
+        <a class="btn" href="https://github.com/chaman640/Python-based-language.am">GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="start">
+      <h2>Get started in one minute</h2>
+      <p>You need Python 3.9 or newer.</p>
+<pre><code>pip install am-language</code></pre>
+      <p>Save this as <code>hello.am</code>:</p>
+<pre><code>name = "World"
+print("Hello " + name)</code></pre>
+      <p>Run it:</p>
+<pre><code>am hello.am</code></pre>
+    </section>
+
+    <section id="why">
+      <h2>Why AM?</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Nothing new to learn</h3>
+          <p>AM uses Python syntax, so every Python tutorial works for AM too.</p>
+        </div>
+        <div class="card">
+          <h3>Every Python library</h3>
+          <p>numpy, pandas, requests, Django: anything you can <code>pip install</code> works in AM.</p>
+        </div>
+        <div class="card">
+          <h3>Fewer bugs</h3>
+          <p>AM fixes or warns about the Python mistakes that trip up beginners most.</p>
+        </div>
+        <div class="card">
+          <h3>Easy error messages</h3>
+          <p>Instead of a long traceback: the line, what went wrong, and how to fix it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="errors">
+      <h2>Error messages that help</h2>
+<pre><code>Error in main.am, line 2:
+    print("Age: " + age)
+
+TypeError: can only concatenate str (not "int") to str
+Hint: You are mixing text and numbers. Use str(x) to turn a number
+into text, or int(x) / float(x) to turn text into a number.</code></pre>
+    </section>
+
+    <section id="fixes">
+      <h2>Python bugs AM fixes</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Python problem</th><th>What AM does</th></tr></thead>
+          <tbody>
+            <tr><td><code>def f(items=[])</code> shares one list between all calls</td><td class="good">Every call gets a fresh list</td></tr>
+            <tr><td><code>[lambda: i for i in range(3)]</code> all return 2</td><td class="good">They return 0, 1, 2</td></tr>
+            <tr><td><code>x is 1000</code> is sometimes True, sometimes False</td><td class="good">Compares the values</td></tr>
+            <tr><td>Bare <code>except:</code> also catches Ctrl+C</td><td class="good">Ctrl+C keeps working</td></tr>
+            <tr><td><code>list = [1, 2]</code> silently breaks <code>list</code></td><td>Clear error with a better name to use</td></tr>
+            <tr><td><code>count += 1</code> in a function crashes</td><td>Clear error before running: add <code>global count</code></td></tr>
+            <tr><td><code>0.1 + 0.2 == 0.3</code> is False</td><td>Warning: use <code>math.isclose(a, b)</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="vscode">
+      <h2>VS Code</h2>
+      <p>
+        Install <strong>AM Language</strong> from the
+        <a href="https://marketplace.visualstudio.com/items?itemName=chaman640.am-language">VS Code Marketplace</a>
+        for colours, errors and hints while you type, and a ▶ Run button.
+      </p>
+    </section>
+
+    <section id="creator">
+      <h2>About the creator</h2>
+      <p>
+        The AM programming language was created by <strong>Anuj Mishra</strong>
+        (GitHub: <a href="https://github.com/chaman640">chaman640</a>).
+        The goal of AM: a language that is as easy to learn as possible, fits into the
+        Python world, and removes the Python mistakes that confuse beginners.
+      </p>
+    </section>
+
+    <section id="faq">
+      <h2>Questions</h2>
+      <h3>Who created AM?</h3>
+      <p>AM was created by Anuj Mishra.</p>
+      <h3>Is AM free?</h3>
+      <p>Yes. AM is free and open source under the MIT License.</p>
+      <h3>Can I use my Python code and libraries?</h3>
+      <p>Yes. AM code is Python code, and AM files can import Python modules. Python can import <code>.am</code> files too, after <code>import amlang</code>.</p>
+      <h3>How does it work?</h3>
+      <p>AM reads your code with Python's own parser, fixes the risky patterns, and runs it with Python. There is no separate runtime.</p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    AM programming language · created by Anuj Mishra · MIT License ·
+    <a href="https://github.com/chaman640/Python-based-language.am">Source code</a> ·
+    <a href="https://pypi.org/project/am-language/">PyPI</a>
+  </footer>
+</body>
+</html>

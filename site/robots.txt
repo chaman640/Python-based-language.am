@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chaman640.github.io/Python-based-language.am/sitemap.xml

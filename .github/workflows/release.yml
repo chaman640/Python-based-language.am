@@ -36,3 +36,25 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.event.release.tag_name }}
+
+      # VS Code Marketplace. Needs the repository secret VSCE_PAT (see docs/ROADMAP.md).
+      - name: Publish to VS Code Marketplace
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: |
+          if [ -z "$VSCE_PAT" ]; then
+            echo "::warning::VSCE_PAT secret is not set, skipping the VS Code Marketplace"
+            exit 0
+          fi
+          npx -y @vscode/vsce publish --packagePath *.vsix
+
+      # Open VSX (used by VSCodium, Cursor and others). Optional secret OVSX_PAT.
+      - name: Publish to Open VSX
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: |
+          if [ -z "$OVSX_PAT" ]; then
+            echo "Optional OVSX_PAT secret is not set, skipping Open VSX"
+            exit 0
+          fi
+          npx -y ovsx publish *.vsix

@@ -1,12 +1,12 @@
 [project]
 name = "am-language"
-version = "0.1.1"
-description = "AM: Python syntax, Python libraries, fewer Python bugs"
+version = "0.1.2"
+description = "AM programming language by Anuj Mishra: Python syntax, Python libraries, fewer Python bugs"
 readme = "README.md"
 license = { file = "LICENSE" }
-authors = [{ name = "chaman640" }]
+authors = [{ name = "Anuj Mishra" }]
 requires-python = ">=3.9"
-keywords = ["language", "python", "beginners", "education", "transpiler"]
+keywords = ["am", "am language", "programming language", "python", "beginners", "education", "anuj mishra"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Education",
@@ -18,7 +18,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/chaman640/Python-based-language.am"
+Homepage = "https://chaman640.github.io/Python-based-language.am/"
+Source = "https://github.com/chaman640/Python-based-language.am"
+"VS Code extension" = "https://marketplace.visualstudio.com/items?itemName=chaman640.am-language"
 Issues = "https://github.com/chaman640/Python-based-language.am/issues"
 
 [project.scripts]

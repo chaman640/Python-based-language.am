@@ -1,9 +1,12 @@
-# Python-based-language.am
+# AM programming language
 
-**AM** is a small language that looks exactly like Python, runs every Python
-library, and fixes a few common Python bugs automatically.
+**AM** is a free programming language created by **Anuj Mishra**. It looks
+exactly like Python, runs every Python library, and fixes common Python bugs
+automatically. Files end in `.am`. If you know Python, you already know AM.
 
-Files end in `.am`. If you know Python, you already know AM.
+[Website](https://chaman640.github.io/Python-based-language.am/) ·
+[PyPI: am-language](https://pypi.org/project/am-language/) ·
+[VS Code extension](https://marketplace.visualstudio.com/items?itemName=chaman640.am-language)
 
 ## Install
 
@@ -87,9 +90,11 @@ Run `am --traceback file.am` to see the full Python traceback.
 
 ## VS Code
 
-The extension in [`editors/vscode`](editors/vscode) gives `.am` files Python
+Install **AM Language** from the
+[VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=chaman640.am-language)
+(search "AM Language" in the Extensions panel). It gives `.am` files Python
 colours, auto-indent, errors and hints while you type, and a ▶ Run button.
-See its [README](editors/vscode/README.md) to install it.
+The code is in [`editors/vscode`](editors/vscode).
 
 ## How it works
 
@@ -109,6 +114,12 @@ node --test editors/vscode/test/extension.test.js
 ```
 
 See [docs/ROADMAP.md](docs/ROADMAP.md) for the step-by-step plan.
+
+## About
+
+AM was created by **Anuj Mishra** (GitHub: [chaman640](https://github.com/chaman640)).
+The goal: a language that is as easy to learn as possible, fits into the
+Python world, and removes the Python mistakes that trip up beginners most.
 
 ## License
 

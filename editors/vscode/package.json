@@ -1,10 +1,33 @@
 {
   "name": "am-language",
   "displayName": "AM Language",
-  "description": "Colours, errors and a Run button for AM (.am) files",
-  "version": "0.1.1",
+  "description": "AM programming language by Anuj Mishra: Python syntax with fewer bugs. Colours, live errors with hints, and a Run button for .am files.",
+  "version": "0.1.2",
   "publisher": "chaman640",
+  "author": {
+    "name": "Anuj Mishra",
+    "url": "https://github.com/chaman640"
+  },
   "license": "MIT",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#1f4e8c",
+    "theme": "dark"
+  },
+  "homepage": "https://chaman640.github.io/Python-based-language.am/",
+  "bugs": {
+    "url": "https://github.com/chaman640/Python-based-language.am/issues"
+  },
+  "keywords": [
+    "am",
+    "am language",
+    "am-language",
+    "python",
+    "beginners",
+    "anuj mishra",
+    "programming language",
+    "education"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/chaman640/Python-based-language.am"
@@ -14,7 +37,8 @@
   },
   "categories": [
     "Programming Languages",
-    "Linters"
+    "Linters",
+    "Education"
   ],
   "main": "./extension.js",
   "activationEvents": [

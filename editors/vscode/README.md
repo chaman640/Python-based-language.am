@@ -1,41 +1,37 @@
 # AM Language for VS Code
 
+Support for **AM**, a free programming language created by **Anuj Mishra**.
+AM looks exactly like Python, runs every Python library, and fixes common
+Python bugs automatically. Files end in `.am`.
+
+## Features
+
 - **Colours** for `.am` files (the same as Python)
+- **Errors and warnings while you type**, with an easy hint on how to fix each one
+- **▶ Run button** (top right of the editor) runs the file with `am` in a terminal
 - **Auto-indent** after `:`, comment toggling with `Ctrl+/`, bracket and quote pairs
-- **Errors and warnings while you type**, with the same hints `am` prints
-- **Run button** (▶ at the top right) runs the file with `am` in a terminal
 
-The extension uses the `am` command, so install AM first:
+```
+Error in main.am, line 2:
+    print(nmae)
 
-```bash
-cd Python-based-language.am
-pip install -e .
+NameError: name 'nmae' is not defined
+Hint: Did you mean 'name'?
 ```
 
-## Install the extension
+## Getting started
 
-**Option 1: from a .vsix file (recommended)**
-
-1. Download `am-language.vsix` from the latest
-   [tests run on GitHub Actions](https://github.com/chaman640/Python-based-language.am/actions)
-   (open the run, scroll to *Artifacts*, download and unzip `am-language-vsix`),
-   or build it yourself:
+1. Install AM (needs Python 3.9 or newer):
    ```bash
-   cd editors/vscode
-   npx @vscode/vsce package
+   pip install am-language
    ```
-2. In VS Code: Extensions panel → `...` menu → **Install from VSIX...** → pick the file.
-   Or from a terminal: `code --install-extension am-language-0.1.1.vsix`
-
-**Option 2: only colours, no extension**
-
-Add this to your VS Code `settings.json`:
-
-```json
-"files.associations": { "*.am": "python" }
-```
-
-You get Python colours, but not the AM errors, hints, or Run button.
+2. Install this extension.
+3. Create a file `hello.am`:
+   ```python
+   name = "World"
+   print("Hello " + name)
+   ```
+4. Press ▶ at the top right.
 
 ## Settings
 
@@ -43,6 +39,22 @@ You get Python colours, but not the AM errors, hints, or Run button.
 |---|---|---|
 | `am.command` | `am` | Command used to run and check files, e.g. `python -m amlang` |
 | `am.checkWhileTyping` | `true` | Check while typing; if off, only on open and save |
+
+## Install without the Marketplace
+
+Download `am-language-<version>.vsix` from the
+[GitHub releases](https://github.com/chaman640/Python-based-language.am/releases), then in VS Code:
+Extensions panel → `...` menu → **Install from VSIX...**
+
+## About
+
+AM and this extension were created by **Anuj Mishra**
+([GitHub: chaman640](https://github.com/chaman640)) and are free and open source
+under the MIT License.
+
+- Website: https://chaman640.github.io/Python-based-language.am/
+- Code: https://github.com/chaman640/Python-based-language.am
+- Python package: https://pypi.org/project/am-language/
 
 ## Develop
 

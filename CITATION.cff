@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use AM, please cite it like this."
+title: "AM programming language"
+abstract: "AM is a free programming language that uses Python syntax, runs every Python library, and fixes common Python bugs automatically. Files end in .am."
+type: software
+authors:
+  - given-names: Anuj
+    family-names: Mishra
+    alias: chaman640
+version: 0.1.2
+license: MIT
+repository-code: "https://github.com/chaman640/Python-based-language.am"
+url: "https://chaman640.github.io/Python-based-language.am/"
+keywords:
+  - AM language
+  - programming language
+  - Python
+  - beginners

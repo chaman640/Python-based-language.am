@@ -4,7 +4,7 @@ import os
 import sys
 import traceback
 
-from . import __version__, compile_am, new_globals, run_file
+from . import __author__, __version__, compile_am, new_globals, run_file
 from .errors import format_error
 
 USAGE = """usage: am [--traceback] [file.am] [args...]
@@ -48,7 +48,7 @@ def main():
     while args and args[0] in ("--traceback", "--check", "--json", "--version", "-h", "--help"):
         flags.add(args.pop(0))
     if "--version" in flags:
-        print(f"AM {__version__}")
+        print(f"AM {__version__} (created by {__author__})")
         return
     if flags & {"-h", "--help"}:
         print(USAGE, end="")
@@ -59,7 +59,7 @@ def main():
         sys.exit(check(args[0], as_json="--json" in flags))
     show_traceback = "--traceback" in flags
     if not args:
-        AmConsole(new_globals(filename="<am>")).interact(banner="AM language (type exit() to quit)", exitmsg="")
+        AmConsole(new_globals(filename="<am>")).interact(banner=f"AM {__version__}, created by {__author__}. Type exit() to quit.", exitmsg="")
         return
 
     path = args[0]

@@ -1,4 +1,7 @@
-"""AM: Python syntax, Python libraries, fewer Python bugs."""
+"""AM: Python syntax, Python libraries, fewer Python bugs.
+
+The AM programming language was created by Anuj Mishra.
+"""
 import ast
 import importlib.machinery
 import importlib.util
@@ -9,7 +12,8 @@ import warnings
 
 from .fixer import MISSING, Fixer
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
+__author__ = "Anuj Mishra"
 __all__ = ["AmWarning", "compile_am", "run_file"]
 
 

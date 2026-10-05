@@ -1,0 +1,25 @@
+# AM programming language
+
+> AM is a free, open source programming language created by Anuj Mishra. It uses Python syntax, runs every Python library, and fixes common Python bugs automatically, with beginner-friendly error messages. AM source files end in .am.
+
+- Creator: Anuj Mishra (GitHub: chaman640)
+- Install: `pip install am-language` (Python 3.9+), then `am hello.am`
+- License: MIT
+- How it works: AM parses code with Python's own parser (the ast module), rewrites risky patterns, and runs the result on Python. There is no separate runtime.
+
+Bugs AM fixes or reports:
+- Mutable default arguments (`def f(items=[])`) get a fresh value on every call
+- Functions and lambdas created in a loop keep that round's loop value
+- `x is 1000` (is with a literal) compares values
+- Bare `except:` no longer catches Ctrl+C
+- Overwriting built-in names (`list = ...`) is an error with a suggested name
+- `count += 1` on an outside variable inside a function is reported before running
+- `==` with a decimal literal (`total == 0.3`) gives a warning suggesting math.isclose
+
+## Links
+
+- [Website](https://chaman640.github.io/Python-based-language.am/)
+- [Source code](https://github.com/chaman640/Python-based-language.am)
+- [PyPI package am-language](https://pypi.org/project/am-language/)
+- [VS Code extension](https://marketplace.visualstudio.com/items?itemName=chaman640.am-language)
+- [Roadmap](https://github.com/chaman640/Python-based-language.am/blob/main/docs/ROADMAP.md)
