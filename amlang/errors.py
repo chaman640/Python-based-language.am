@@ -81,10 +81,10 @@ def _message(exc):
 def _hint(exc):
     msg = str(exc)
 
+    if getattr(exc, "hint", None):
+        return exc.hint
+
     if isinstance(exc, SyntaxError):
-        match = re.search(r"'(\w+)' is a built-in name", exc.msg)
-        if match:
-            return f"Python already uses '{match.group(1)}'. Use another name, for example 'my_{match.group(1)}'."
         if isinstance(exc, (IndentationError, TabError)):
             return "Use 4 spaces for each indent level, and do not mix tabs and spaces."
         return "Check this line (and the one above) for a missing ':', bracket or quote."

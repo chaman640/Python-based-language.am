@@ -38,12 +38,17 @@ from helpers import add_item
 
 ## Bugs AM fixes
 
+Bugs 1-5 are fixed automatically. 4, 6 and 7 are reported before the program runs.
+
 | # | Python problem | What AM does |
 |---|---|---|
 | 1 | `def f(items=[])` shares one list between all calls | Every call gets a fresh `[]`, `{}` or `set()` |
 | 2 | `x is 1000` is sometimes True, sometimes False | `is` with a number or string compares values (`==`). `is None` is unchanged |
 | 3 | Bare `except:` also catches Ctrl+C | It becomes `except Exception:` |
 | 4 | `list = [1, 2]` silently breaks the built-in `list` | Clear error: `'list' is a built-in name, choose another name` |
+| 5 | `[lambda: i for i in range(3)]` gives functions that all return `2` | Functions made in a loop remember the loop value of *that* round: `0, 1, 2` |
+| 6 | `0.1 + 0.2 == 0.3` is `False` | Warning before the program runs, suggesting `math.isclose(a, b)` |
+| 7 | `count += 1` in a function crashes with `UnboundLocalError` when `count` is outside it | Clear error before the program runs: add `global count` (or `nonlocal`) |
 
 The fixes apply only to `.am` files. Library code is never changed, so every
 library behaves exactly as it does in Python.

@@ -35,10 +35,15 @@ class HintTests(unittest.TestCase):
     def test_zero_division(self):
         self.assertIn("divided by zero", error_for("print(1 / 0)\n"))
 
-    def test_local_variable_changed_in_function(self):
-        msg = error_for("count = 0\ndef inc():\n    count += 1\ninc()\n")
+    def test_local_variable_read_before_set_in_function(self):
+        msg = error_for("count = 0\ndef show():\n    print(count)\n    count = 5\nshow()\n")
         self.assertIn("UnboundLocalError", msg)
         self.assertIn("'count' is changed inside this function", msg)
+
+    def test_outer_variable_changed_is_found_before_running(self):
+        msg = error_for("print('ran')\ncount = 0\ndef inc():\n    count += 1\n")
+        self.assertIn("Error in test.am, line 4:", msg)
+        self.assertIn("Add 'global count'", msg)
 
     def test_key_error(self):
         msg = error_for("d = {}\nd['x']\n")

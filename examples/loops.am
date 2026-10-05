@@ -1,0 +1,12 @@
+# Functions made in a loop remember that round's value
+buttons = []
+for color in ["red", "green", "blue"]:
+    def click():
+        return "You clicked " + color
+    buttons.append(click)
+
+for button in buttons:
+    print(button())   # red, green, blue   (Python: blue, blue, blue)
+
+squares = [lambda: n * n for n in range(4)]
+print([f() for f in squares])   # [0, 1, 4, 9]   (Python: [9, 9, 9, 9])

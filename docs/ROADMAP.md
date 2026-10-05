@@ -45,10 +45,11 @@ use chala deta hai.
 - [x] Library ke andar error ho to batana ki kaunsi library, aur aapki kaunsi line ne use call kiya
 - [x] `am --traceback file.am` se pura Python traceback bhi dekh sakte hain
 
-### Step 4: Aur bug fixes (ek-ek karke, har ek ke saath test)
-- [ ] Loop ke andar lambda/closure ka late binding (`[lambda: i for i in range(3)]`)
-- [ ] `==` se float compare karne par warning (`0.1 + 0.2 == 0.3`)
-- [ ] Function ke andar global variable ko bina `global` ke badalne par saaf error
+### Step 4: Aur bug fixes (ho gaya ✅)
+- [x] Loop ke andar lambda/`def` ka late binding: `[lambda: i for i in range(3)]` ab `0, 1, 2` deta hai
+- [x] Decimal number ko `==` se compare karne par warning (`total == 0.3`), `math.isclose` ka hint
+- [x] Function ke andar bahar wale variable par `+=` (bina `global`/`nonlocal`) ka saaf error, program chalne se pehle
+- [x] Check: Python ki standard library ki saari files AM Fixer se bina crash compile hoti hain
 
 Rule: koi fix tabhi jode jab woh Python ki library ko na tode aur Python jaanne
 wale ko hairaan na kare.

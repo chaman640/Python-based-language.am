@@ -5,11 +5,16 @@ import importlib.util
 import linecache
 import os
 import sys
+import warnings
 
 from .fixer import MISSING, Fixer
 
 __version__ = "0.1.0"
-__all__ = ["compile_am", "run_file"]
+__all__ = ["AmWarning", "compile_am", "run_file"]
+
+
+class AmWarning(UserWarning):
+    """A likely bug found while compiling AM code. The program still runs."""
 
 
 def compile_am(source, filename="<am>", mode="exec"):
@@ -17,8 +22,9 @@ def compile_am(source, filename="<am>", mode="exec"):
     if not os.path.exists(filename):
         # Let error messages show the code line even when it isn't in a file.
         linecache.cache[filename] = (len(source), None, source.splitlines(True), filename)
+    fixer = Fixer()
     try:
-        tree = Fixer().visit(ast.parse(source, filename, mode))
+        tree = fixer.visit(ast.parse(source, filename, mode))
     except SyntaxError as e:
         # Errors raised by the Fixer don't know the file yet; fill it in.
         if e.filename is None:
@@ -27,6 +33,8 @@ def compile_am(source, filename="<am>", mode="exec"):
             if e.lineno and e.lineno <= len(lines):
                 e.text = lines[e.lineno - 1]
         raise
+    for lineno, message in fixer.warnings:
+        warnings.warn_explicit(message, AmWarning, filename, lineno)
     return compile(ast.fix_missing_locations(tree), filename, mode)
 
 
@@ -38,6 +46,19 @@ def run_file(path):
     with open(path, encoding="utf-8") as f:
         code = compile_am(f.read(), path)
     exec(code, new_globals(filename=path))
+
+
+def _format_warning(message, category, filename, lineno, line=None):
+    if not issubclass(category, AmWarning):
+        return _python_format_warning(message, category, filename, lineno, line)
+    code_line = (line or linecache.getline(filename, lineno)).strip()
+    short = filename.replace("\\", "/").rsplit("/", 1)[-1]
+    shown = f"\n    {code_line}" if code_line else ""
+    return f"Warning in {short}, line {lineno}:{shown}\nHint: {message}\n\n"
+
+
+_python_format_warning = warnings.formatwarning
+warnings.formatwarning = _format_warning
 
 
 class AmLoader(importlib.machinery.SourceFileLoader):
