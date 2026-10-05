@@ -1,4 +1,5 @@
 import code
+import json
 import os
 import sys
 import traceback
@@ -7,10 +8,14 @@ from . import compile_am, new_globals, run_file
 from .errors import format_error
 
 USAGE = """usage: am [--traceback] [file.am] [args...]
+       am --check [--json] file.am
 
-  am                 start the interactive prompt
-  am file.am         run a file
-  --traceback        show the full Python traceback on errors
+  am                       start the interactive prompt
+  am file.am               run a file
+  am --traceback file.am   run, showing the full Python traceback on errors
+  am --check file.am       find errors and warnings without running the file
+                           (use - as the file name to read code from stdin)
+  --json                   with --check: print the problems as JSON (for editors)
 """
 
 
@@ -38,12 +43,17 @@ class AmConsole(code.InteractiveConsole):
 
 def main():
     args = sys.argv[1:]
-    show_traceback = "--traceback" in args[:1]
-    if show_traceback:
-        args = args[1:]
-    if args[:1] in (["-h"], ["--help"]):
+    flags = set()
+    while args and args[0] in ("--traceback", "--check", "--json", "-h", "--help"):
+        flags.add(args.pop(0))
+    if flags & {"-h", "--help"}:
         print(USAGE, end="")
         return
+    if "--check" in flags:
+        if len(args) != 1:
+            sys.exit("usage: am --check [--json] file.am")
+        sys.exit(check(args[0], as_json="--json" in flags))
+    show_traceback = "--traceback" in flags
     if not args:
         AmConsole(new_globals(filename="<am>")).interact(banner="AM language (type exit() to quit)", exitmsg="")
         return
@@ -61,6 +71,24 @@ def main():
         _report(e, show_traceback)
     except Exception as e:
         _report(e, show_traceback)
+
+
+def check(path, as_json=False):
+    """Print the problems in a file. Returns the exit code: 1 if there are errors."""
+    from .check import check_source, format_problems
+
+    try:
+        if path == "-":
+            source = sys.stdin.read()
+        else:
+            with open(path, encoding="utf-8") as f:
+                source = f.read()
+    except OSError:
+        print(f"am: file not found: {path}", file=sys.stderr)
+        return 2
+    problems = check_source(source, "<stdin>" if path == "-" else path)
+    print(json.dumps(problems) if as_json else format_problems(problems, path))
+    return 1 if any(p["severity"] == "error" for p in problems) else 0
 
 
 def _report(exc, show_traceback):

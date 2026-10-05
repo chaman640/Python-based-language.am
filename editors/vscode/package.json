@@ -1,0 +1,75 @@
+{
+  "name": "am-language",
+  "displayName": "AM Language",
+  "description": "Colours, errors and a Run button for AM (.am) files",
+  "version": "0.1.0",
+  "publisher": "chaman640",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chaman640/Python-based-language.am"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": ["Programming Languages", "Linters"],
+  "main": "./extension.js",
+  "activationEvents": ["onLanguage:am"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "am",
+        "aliases": ["AM", "am"],
+        "extensions": [".am"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "am",
+        "scopeName": "source.am",
+        "path": "./syntaxes/am.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "am.runFile",
+        "title": "Run AM File",
+        "category": "AM",
+        "icon": "$(play)"
+      },
+      {
+        "command": "am.checkFile",
+        "title": "Check AM File for Problems",
+        "category": "AM"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "am.runFile",
+          "when": "resourceLangId == am",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        { "command": "am.runFile", "when": "editorLangId == am" },
+        { "command": "am.checkFile", "when": "editorLangId == am" }
+      ]
+    },
+    "configuration": {
+      "title": "AM",
+      "properties": {
+        "am.command": {
+          "type": "string",
+          "default": "am",
+          "description": "Command used to run and check AM files, e.g. \"am\" or \"python -m amlang\"."
+        },
+        "am.checkWhileTyping": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show AM errors and warnings while you type (otherwise only on save)."
+        }
+      }
+    }
+  }
+}

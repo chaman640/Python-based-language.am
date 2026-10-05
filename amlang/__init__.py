@@ -33,8 +33,10 @@ def compile_am(source, filename="<am>", mode="exec"):
             if e.lineno and e.lineno <= len(lines):
                 e.text = lines[e.lineno - 1]
         raise
-    for lineno, message in fixer.warnings:
-        warnings.warn_explicit(message, AmWarning, filename, lineno)
+    finally:
+        # Show warnings found so far, even if an error stopped the check.
+        for lineno, message in fixer.warnings:
+            warnings.warn_explicit(message, AmWarning, filename, lineno)
     return compile(ast.fix_missing_locations(tree), filename, mode)
 
 

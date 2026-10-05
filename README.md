@@ -19,6 +19,7 @@ pip install -e .
 am hello.am      # run a file
 am               # interactive prompt (like python's >>>)
 am --traceback hello.am   # show the full Python traceback on errors
+am --check hello.am       # find errors and warnings without running
 ```
 
 ```python
@@ -76,6 +77,12 @@ Hint: You are mixing text and numbers. Use str(x) to turn a number into text, or
 
 Run `am --traceback file.am` to see the full Python traceback.
 
+## VS Code
+
+The extension in [`editors/vscode`](editors/vscode) gives `.am` files Python
+colours, auto-indent, errors and hints while you type, and a ▶ Run button.
+See its [README](editors/vscode/README.md) to install it.
+
 ## How it works
 
 ```
@@ -90,6 +97,7 @@ To add a new fix, add one `visit_*` method in `amlang/fixer.py` and a test in
 
 ```bash
 python -m unittest discover -s tests -v
+node --test editors/vscode/test/extension.test.js
 ```
 
 See [docs/ROADMAP.md](docs/ROADMAP.md) for the step-by-step plan.

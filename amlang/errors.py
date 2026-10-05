@@ -17,7 +17,7 @@ def format_error(exc):
     if location:
         parts.append(location)
     parts.append(f"{type(exc).__name__}: {_message(exc)}")
-    hint = _hint(exc)
+    hint = hint_for(exc)
     if hint:
         parts.append(f"Hint: {hint}")
     return "\n".join(parts)
@@ -78,7 +78,8 @@ def _message(exc):
 
 # ---------------------------------------------------------------- hints
 
-def _hint(exc):
+def hint_for(exc):
+    """The "how to fix it" line for an error, or None."""
     msg = str(exc)
 
     if getattr(exc, "hint", None):

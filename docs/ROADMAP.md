@@ -19,6 +19,8 @@ use chala deta hai.
 | `amlang/fixer.py` | Saare bug fixes. Har fix ek `visit_*` function hai |
 | `amlang/__init__.py` | `.am` file compile karna, aur `import` se `.am` files dhundhna |
 | `amlang/errors.py` | Aasaan error messages aur hints |
+| `amlang/check.py` | `am --check`: bina chalaye problems dhundhna |
+| `editors/vscode/` | VS Code extension |
 | `amlang/cli.py` | `am` command aur interactive prompt |
 | `tests/test_fixes.py` | Har fix ka test |
 | `examples/` | Example `.am` programs |
@@ -54,9 +56,12 @@ use chala deta hai.
 Rule: koi fix tabhi jode jab woh Python ki library ko na tode aur Python jaanne
 wale ko hairaan na kare.
 
-### Step 5: Editor support
-- [ ] VS Code me `.am` files ko Python ki tarah colour karna (sirf `files.associations` setting)
-- [ ] Ek chhota VS Code extension
+### Step 5: Editor support (ho gaya ✅)
+- [x] `am --check file.am`: program chalaye bina errors/warnings dhundhna (`--json` editors ke liye)
+- [x] VS Code extension (`editors/vscode/`): Python jaise colours, auto-indent, comments
+- [x] Type karte waqt laal/peeli lines, hint ke saath (wahi messages jo `am` deta hai)
+- [x] ▶ Run button jo file ko terminal me `am` se chalata hai
+- [x] CI har push par extension test karta hai aur `.vsix` file banata hai (Actions → Artifacts)
 
 ### Step 6: Release
 - [ ] PyPI par publish karna, taaki koi bhi `pip install amlang` kar sake

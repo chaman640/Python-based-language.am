@@ -1,0 +1,6 @@
+{
+  "name": "AM",
+  "scopeName": "source.am",
+  "comment": "AM uses Python syntax, so it reuses VS Code's built-in Python grammar.",
+  "patterns": [{ "include": "source.python" }]
+}
